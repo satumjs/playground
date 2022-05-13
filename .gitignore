@@ -1,0 +1,11 @@
+node_modules/
+.cache/
+dist/
+coverage/
+*bak*
+*zip
+.DS_Store
+npm-debug.log
+yarn-error.log
+yarn.lock
+package-lock.json
