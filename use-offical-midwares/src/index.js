@@ -13,10 +13,10 @@ register({
 });
 
 use((system, _, next) => {
-  // 使用中间件节点 MidwareName.urlOption
+  // 设置跨域服务，使用中间件节点 MidwareName.urlOption
   // 该节点设置类型请参考 https://satumjs.github.io/website/guide/midware/flow-nodes.html#%E6%8C%89%E6%94%AF%E6%8C%81%E3%80%8E%E5%8D%95%E4%B8%AA-%E5%A4%9A%E4%B8%AA%E3%80%8F%E5%88%92%E5%88%86
   system.set(MidwareName.urlOption, {
-    corsRule: `https://thingproxy.freeboard.io/fetch/${corsRuleLabel}`
+    corsRule: `https://vklife.fun/proxy?target=${corsRuleLabel}`
   });
   next();
 });
