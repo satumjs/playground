@@ -7,7 +7,7 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 
-import { register, start, use, setHostHistory, MidwareName, FileType } from '../node_modules/@satumjs/core';
+import { register, start, use, set, setHostHistory, MidwareName, FileType, PluginEvent } from '../node_modules/@satumjs/core';
 import { simpleSandboxMidware, mountNodeMidware, interceptorMidware } from '../node_modules/@satumjs/simple-midwares';
 import singleSpaMidware from '../node_modules/@satumjs/midware-single-spa';
 
@@ -181,5 +181,14 @@ use(simpleSandboxMidware);
 use(interceptorMidware);
 use(mountNodeMidware);
 use(singleSpaMidware);
+
+set((sys) => {
+  sys.event(PluginEvent.beforeLoad, customs => {
+    console.log('-------- beforeLoad', customs);
+  });
+  sys.event(PluginEvent.afterMount, customs => {
+    console.log('-------- afterMount', customs);
+  });
+});
 
 start();

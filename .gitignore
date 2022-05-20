@@ -2,6 +2,7 @@ node_modules/
 .cache/
 .husky/
 .vscode
+.umi
 dist/
 coverage/
 *bak*
