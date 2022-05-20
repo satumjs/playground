@@ -8,9 +8,8 @@ import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 
 import { register, start, use, setHostHistory, MidwareName, FileType } from '../node_modules/@satumjs/core';
-import { simpleSandboxMidware, mountNodeMidware } from '../node_modules/@satumjs/simple-midwares';
+import { simpleSandboxMidware, mountNodeMidware, interceptorMidware } from '../node_modules/@satumjs/simple-midwares';
 import singleSpaMidware from '../node_modules/@satumjs/midware-single-spa';
-import interceptorMidware from '../node_modules/@satumjs/midware-interceptor';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
