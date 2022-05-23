@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <style>
+      .msg-title x-satum-micro {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        border: solid 3px red;
+        padding: 16px;
+        box-sizing: border-box;
+      }
+      .msg-title x-satum-micro:before {
+        content: "I'm inserting into this place by `block`";
+      }
+    </style>
+    <div id="mountNode"></div>
+    <script src="./index.js"></script>
+  </body>
+</html>
