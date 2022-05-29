@@ -1,9 +1,12 @@
 {
+  "name": "simple-custom-midware",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel index.html"
   },
   "dependencies": {
-    "@satumjs/core": "latest"
+    "@satumjs/core": "^0.1.3"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
