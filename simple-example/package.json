@@ -1,9 +1,14 @@
 {
+  "name": "use-app-with-lifecycles",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel index.html"
   },
   "dependencies": {
-    "@satumjs/core": "latest"
+    "@satumjs/core": "^0.1.3",
+    "@satumjs/midware-single-spa": "^0.1.1",
+    "@satumjs/simple-midwares": "^0.1.2"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
