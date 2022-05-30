@@ -8,7 +8,7 @@ import singleSpaMidware from '@satumjs/midware-single-spa';
 
 register([
   {
-    name: 'baidu',
+    name: 'vue3',
     entry: 'https://zeroing.jd.com/micro-app/vue3/',
     rules: {
       rule: '/',
