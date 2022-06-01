@@ -7,8 +7,8 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 
-import { register, start, use, set, setHostHistory, MidwareName, FileType, PluginEvent } from '../node_modules/@satumjs/core';
-import { simpleSandboxMidware, mountNodeMidware, interceptorMidware } from '../node_modules/@satumjs/simple-midwares';
+import { register, start, use, set, setHostHistory, MidwareName, FileType, PluginEvent, TimingHookName } from '../node_modules/@satumjs/core';
+import { simpleSandboxMidware, mountNodeMidware, interceptorMidware, imageUrlCompleteMidware } from '../node_modules/@satumjs/simple-midwares';
 import singleSpaMidware from '../node_modules/@satumjs/midware-single-spa';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -132,40 +132,7 @@ register([{
   }
 }]);
 
-use((sys, apps, next) => {
-  sys.set(MidwareName.domChange, (appName, mountNode) => {
-    mountNode.querySelectorAll("img").forEach((el) => {
-      const src = el.getAttribute("src");
-      const { assetPublicPath = '' } = apps.find((item) => item.name === appName) || {};
-      const matchs = assetPublicPath.match(/(^(https?\:)?\/\/[^\/]+)/g);
-      const rootPath = matchs[0];
-      const newSrc = /^(https?\:)?\/\//.test(src) ? src : `${src.charAt(0) === "/" ? rootPath : assetPublicPath}${src}`;
-      el.setAttribute("src", newSrc);
-    });
-    return appName;
-  });
-
-  sys.set(MidwareName.code, (code, file) => {
-    const ext = sys.fileExtName(file);
-    if (ext === FileType.CSS) {
-      const cssPath = file.replace(/[^\/]+$/, '');
-      const { assetPublicPath = cssPath } = apps.find(item => item.fileExtNameMap[file]) || {};
-      const matchs = code.match(/url\([^\)]+\)/ig);
-    
-      if (matchs) {
-        matchs.forEach(s => {
-          const paths = s.match(/\(([^\)]+)\)/);
-          const url = paths ? paths[1] : undefined;
-          if (url && url.charAt(0) === '.') {
-            code = code.replace(s, s.replace(url, assetPublicPath + url));
-          }
-        });
-      }
-      return code;
-    }
-    return code;
-  });
-
+use((sys, _, next) => {
   sys.set(MidwareName.url, (url) => {
     const repeatPart = '/micro-app/vue2';
     if (url.indexOf(repeatPart) !== url.lastIndexOf(repeatPart)) {
@@ -177,18 +144,23 @@ use((sys, apps, next) => {
   next();
 });
 
+use(imageUrlCompleteMidware);
 use(simpleSandboxMidware);
 use(interceptorMidware);
 use(mountNodeMidware);
 use(singleSpaMidware);
 
 set((sys) => {
-  sys.event(PluginEvent.beforeLoad, customs => {
+  /* sys.event(PluginEvent.beforeLoad, customs => {
     console.log('-------- beforeLoad', customs);
   });
   sys.event(PluginEvent.afterMount, customs => {
     console.log('-------- afterMount', customs);
-  });
+  }); */
+
+  Object.values(TimingHookName).forEach(thn => {
+    sys.event(thn, data => console.log('----------', thn, data, Date.now()))
+  })
 });
 
 start();
