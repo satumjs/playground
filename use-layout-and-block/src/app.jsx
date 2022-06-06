@@ -7,7 +7,7 @@ import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import defaultSettings from '../config/defaultSettings';
 
-import { register, start, use, set, setHostHistory, MidwareName, FileType, PluginEvent, TimingHookName } from '../node_modules/@satumjs/core';
+import { register, start, use, set, setHostHistory, MidwareName, FileType, PluginEvent, TimingHookName, HOSTAPPNAME } from '../node_modules/@satumjs/core';
 import { simpleSandboxMidware, mountNodeMidware, interceptorMidware, imageUrlCompleteMidware } from '../node_modules/@satumjs/simple-midwares';
 import singleSpaMidware from '../node_modules/@satumjs/midware-single-spa';
 
@@ -110,13 +110,19 @@ export const layout = ({ initialState, setInitialState }) => {
 export function modifyClientRenderOpts(props) {
   // console.log('-------', props)
   setHostHistory(props.history, [
-    { rule: '/react17', path: '/sub-layout' },
-    { rule: /\/vue(2|3)/, path: '/sub-layout' }
+    { rule: '/react17', layout: '/sub-layout' },
+    { rule: /\/vue(2|3)/, layout: '/sub-layout' }
   ]);
   return props;
 }
 
-register([{
+register([/* {
+  name: HOSTAPPNAME,
+  rules: [
+    { rule: '/react17', layout: '/sub-layout' },
+    { rule: /\/vue(2|3)/, layout: '/sub-layout' }
+  ]
+}, */ {
   name: 'react17',
   entry: 'https://zeroing.jd.com/micro-app/react17/',
   rules: {
@@ -159,7 +165,7 @@ set((sys) => {
   }); */
 
   Object.values(TimingHookName).forEach(thn => {
-    sys.event(thn, data => console.log('----------', thn, data, Date.now()))
+    // sys.event(thn, data => console.log('----------', thn, data, Date.now()))
   })
 });
 
