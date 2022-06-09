@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "start": "run-p start:*",
+    "start:vite": "vite",
+    "start:layout": "serve -p 30000 -C ./layout",
+    "start:app1": "serve -p 3001 -C ./app1",
+    "start:app2": "serve -p 3002 -C ./app2"
+  },
+  "dependencies": {
+    "@satumjs/core": "latest",
+    "@satumjs/simple-midwares": "latest"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "serve": "^13.0.2",
+    "vite": "^2.9.10"
+  }
+}

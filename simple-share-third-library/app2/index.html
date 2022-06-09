@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>app2</title>
+    <script>
+      console.log('-------app2 jquery:', window.jQuery);
+      if (!window.jQuery) {
+        const mountNode = document.querySelector('#app1MountNode');
+        mountNode.innerHTML = 'hello world without jQuery';
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app1MountNode"></div>
+  </body>
+</html>

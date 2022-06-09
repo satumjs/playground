@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>app1</title>
+    <script>
+      console.log('-------app1 jquery:', window.jQuery);
+      const $ = window.jQuery;
+      if ($) $('#app1MountNode').html(`hello jQuery, version: ${$.fn.jquery}`);
+    </script>
+  </head>
+  <body>
+    <div id="app1MountNode"></div>
+  </body>
+</html>
