@@ -1,6 +1,6 @@
 // @ts-check
 import { register, start, use, MidwareName, corsRuleLabel } from '@satumjs/core';
-import { simpleSandboxMidware, mountNodeMidware, interceptorMidware } from '@satumjs/simple-midwares'
+import { simpleSandboxMidware, mountNodeMidware, interceptorMidware, imageUrlCompleteMidware } from '@satumjs/simple-midwares'
 
 register([{
   name: 'react',
@@ -34,6 +34,7 @@ use((sys, _, next) => {
   next();
 });
 
+use(imageUrlCompleteMidware);
 use(interceptorMidware);
 use(simpleSandboxMidware);
 use(mountNodeMidware);
