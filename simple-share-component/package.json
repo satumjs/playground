@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "initial": "yarn clean && yarn && npm-run-all initial:*",
+    "initial:react": "cd react && yarn",
+    "initial:vue": "cd vue && yarn",
+    "clean": "rm -rf ./node_modules yarn.lock **/node_modules **/yarn.lock .cache dist",
+    "start": "run-p start:*",
+    "start:main": "parcel index.html",
+    "start:react": "cd react && yarn start",
+    "start:vue": "cd vue && yarn serve"
+  },
+  "dependencies": {
+    "@satumjs/core": "latest",
+    "@satumjs/simple-midwares": "^0.1.6"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.12.5"
+  }
+}
