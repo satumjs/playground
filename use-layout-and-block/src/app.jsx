@@ -108,14 +108,16 @@ export const layout = ({ initialState, setInitialState }) => {
 };
 
 export function modifyClientRenderOpts(props) {
-  // console.log('-------', props)
+  // 这里手动劫持基座路由，是为了协调与微应用路由的关系。这是其中一种设置方式，需要用户在获取到基座 history 对象时执行 setHostHistory。
   setHostHistory(props.history, [
     { rule: '/react17', layout: '/sub-layout' },
     { rule: /\/vue(2|3)/, layout: '/sub-layout' }
   ]);
+  /* setHostHistory(props.history); */
   return props;
 }
 
+// 这是第二种设置方式
 register([/* {
   name: uHostAppName,
   rules: [
